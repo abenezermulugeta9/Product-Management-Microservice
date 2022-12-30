@@ -3,6 +3,7 @@ package com.abenezermulugeta.productservice;
 
 import com.abenezermulugeta.productservice.repository.ProductRepository;
 import com.abenezermulugeta.productservice.service.dto.ProductRequest;
+import com.abenezermulugeta.productservice.service.dto.ProductResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -34,8 +35,6 @@ class ProductServiceImplApplicationTests {
     private MockMvc mockMvc;
     @Autowired
     private ObjectMapper objectMapper;
-    @Autowired
-    private ProductRepository productRepository;
 
     // this method will get the uri for connecting to the mongoDb instance running on docker
     @DynamicPropertySource // this will be a dynamic operation at the time of runtime
@@ -51,7 +50,6 @@ class ProductServiceImplApplicationTests {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(productRequestString))
                 .andExpect(status().isCreated());
-        Assertions.assertTrue();
     }
 
     private ProductRequest getProductRequest() {
@@ -60,5 +58,10 @@ class ProductServiceImplApplicationTests {
                 .description("iphone13 description")
                 .price(BigDecimal.valueOf(599))
                 .build();
+    }
+
+    @Test
+    void shouldGetProducts() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/products")).andExpect(status().is2xxSuccessful());
     }
 }
