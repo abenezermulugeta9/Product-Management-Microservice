@@ -1,0 +1,6 @@
+com\abenezermulugeta\inventoryservice\controller\InventoryController.class
+com\abenezermulugeta\inventoryservice\InventoryServiceApplication.class
+com\abenezermulugeta\inventoryservice\model\Inventory.class
+com\abenezermulugeta\inventoryservice\service\InventoryServiceImpl.class
+com\abenezermulugeta\inventoryservice\repository\InventoryRepository.class
+com\abenezermulugeta\inventoryservice\service\InventoryService.class

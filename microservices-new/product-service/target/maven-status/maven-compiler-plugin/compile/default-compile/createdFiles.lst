@@ -1,0 +1,11 @@
+com\abenezermulugeta\productservice\service\ProductService.class
+com\abenezermulugeta\productservice\model\Product$ProductBuilder.class
+com\abenezermulugeta\productservice\model\Product.class
+com\abenezermulugeta\productservice\ProductServiceApplication.class
+com\abenezermulugeta\productservice\service\dto\ProductRequest$ProductRequestBuilder.class
+com\abenezermulugeta\productservice\service\dto\ProductResponse$ProductResponseBuilder.class
+com\abenezermulugeta\productservice\service\ProductServiceImpl.class
+com\abenezermulugeta\productservice\service\dto\ProductRequest.class
+com\abenezermulugeta\productservice\service\dto\ProductResponse.class
+com\abenezermulugeta\productservice\repository\ProductRepository.class
+com\abenezermulugeta\productservice\controller\ProductController.class
