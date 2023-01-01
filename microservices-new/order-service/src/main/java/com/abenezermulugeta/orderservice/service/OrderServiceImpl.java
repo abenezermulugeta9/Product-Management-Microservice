@@ -8,6 +8,7 @@ import com.abenezermulugeta.orderservice.service.dto.OrderRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.List;
 import java.util.UUID;
@@ -17,6 +18,7 @@ import java.util.UUID;
 @Transactional
 public class OrderServiceImpl implements OrderService {
     private final OrderRepository orderRepository;
+    private final WebClient webClient;
 
     @Override
     public void placeOrder(OrderRequest orderRequest) {
@@ -30,7 +32,15 @@ public class OrderServiceImpl implements OrderService {
 
         order.setOrderLineItemsList(orderLineItems);
 
-        orderRepository.save(order);
+        // call Inventory Service and place order if product is in stock
+        Boolean result = webClient.get()
+                .uri("http://localhost:8082/api/inventory")
+                .retrieve()
+                .bodyToMono(Boolean.class)
+                .block();
+
+        if (result) orderRepository.save(order);
+        else throw new IllegalArgumentException("Product is not in stock, please try again.");
     }
 
     private OrderLineItems mapToDto(OrderLineItemsDto orderLineItemsDto) {
